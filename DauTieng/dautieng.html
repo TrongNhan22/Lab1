@@ -47,36 +47,25 @@
                 console.error('Async: Could not copy text: ', err);
             });
         }
-        var point_template_tree = {
-            title: "{Name}",
-            content: "Cây này ở <b>{Location}</b>."
-        };
-        var point_template_light = {
-            title: "{Name}",
-            content: "Bóng đèn này ở <b>{Location}</b>."
-        };
-        var point_template_chair = {
-            title: "{Name}",
-            content: "Cái ghế này ở <b>{Location}</b>."
-        };
+   
+
+ 
         var point_template_area = {
             title: "{Name}",
-            content: "Khu vực này ở <b>{Location}</b>."
+            content: "Khu vực này ở <b>{Location}</b> với diện tích là <b>{Square}</b>.\n Hiện đang có <b>{Population}</b> sinh sống"
         };
-        var point_template_university = {
-            title: "{Name}",
-            content: "Trường ở <b>{Location}</b>."
-        };
+
         var jsondata = {
 
 
             "polygons": [
-
                 {
                     type: "polygon",
+                    Population: "22.403 người",
+                    Square: "721,95 km²",
                     rings: myCoordinates,
-                    Name: "Đại học TDTT",
-                    Location: "Khu phố 6, P.Linh Trung, Q.Thủ Đức, Tp.Hồ Chí Minh",
+                    Name: "Dầu Tiếng",
+                    Location: "phía tây bắc tỉnh Bình Dương",
                     symbol: {
                         type: "simple-fill",
                         color: [204, 153, 0, 0.4],
@@ -85,7 +74,8 @@
                             width: 1
                         }
                     },
-                    popupTemplate: point_template_university
+                    popupTemplate: point_template_area
+                   
                 },
 
             ]
@@ -123,17 +113,17 @@
                 });
             };
 
-            view.popup.autoOpenEnabled = false; // Disable the default popup behavior
-            view.on("click", function (event) { // Listen for the click event
-                view.hitTest(event).then(function (hitTestResults) { // Search for features where the user clicked
-                    if (hitTestResults.results) {
-                        list_points.push([event.mapPoint.longitude, event.mapPoint.latitude]);
-                        string_points += "[" + event.mapPoint.longitude + ", " + event.mapPoint.latitude + "],"
-                        copyTextToClipboard(string_points);
-                        console.log(list_points);
-                    }
-                })
-            });
+            // view.popup.autoOpenEnabled = false; // Disable the default popup behavior
+            // view.on("click", function (event) { // Listen for the click event
+            //     view.hitTest(event).then(function (hitTestResults) { // Search for features where the user clicked
+            //         if (hitTestResults.results) {
+            //             list_points.push([event.mapPoint.longitude, event.mapPoint.latitude]);
+            //             string_points += "[" + event.mapPoint.longitude + ", " + event.mapPoint.latitude + "],"
+            //             copyTextToClipboard(string_points);
+            //             console.log(list_points);
+            //         }
+            //     })
+            // });
 
             var graphicsLayer = new GraphicsLayer();
 
