@@ -31,7 +31,7 @@
                     var values = line.split(',');
 
                     myCoordinates.push([parseFloat(values[0]), parseFloat(values[1])]);
-                    
+
                 });
                 myCoordinates.splice(-1)
             })
@@ -69,21 +69,26 @@
         };
         var jsondata = {
 
-            "lines": [
+
+            "polygons": [
 
                 {
-                    type: "polyline",
-                    paths: myCoordinates,
+                    type: "polygon",
+                    rings: myCoordinates,
+                    Name: "Đại học TDTT",
+                    Location: "Khu phố 6, P.Linh Trung, Q.Thủ Đức, Tp.Hồ Chí Minh",
                     symbol: {
-                        type: "simple-line",
-                        color: [204, 0, 204], // pink
-                        width: 2
+                        type: "simple-fill",
+                        color: [204, 153, 0, 0.4],
+                        outline: {
+                            color: [135,206,250],
+                            width: 1
+                        }
                     },
-                    Name: "Dầu Tiếng",
-                    Location: "Thành phố",
-                    popupTemplate: point_template_area
-                }
-            ],
+                    popupTemplate: point_template_university
+                },
+
+            ]
 
         };
         require([
@@ -132,12 +137,11 @@
 
             var graphicsLayer = new GraphicsLayer();
 
-            jsondata.lines.forEach(function (data) {
+
+            jsondata.polygons.forEach(function (data) {
                 graphicsLayer.add(createGraphic(data));
             });
-
             map.add(graphicsLayer);
-
 
         });
     </script>
