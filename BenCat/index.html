@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test</title>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.15/esri/themes/light/main.css"
+    />
+    <script src="https://js.arcgis.com/4.15/"></script>
+    <script src="./baubang_bencat.js"></script>
+    <script src="./tanuyen_bencat.js"></script>
+    <script src="./bencat.js"></script>
+    <script src="./dautieng.js"></script>
+    <script src="./DT749A.js"></script>
+    <script type="module">
+      function reverseArray(arr) {
+        let reversed = [];
+        for (let i = arr.length - 1; i >= 0; i--) {
+          reversed.push(arr[i]);
+        }
+        return reversed;
+      }
+      var newBaubang = reverseArray(baubang.point);
+      var newDautieng = reverseArray(dautieng.point);
+      var newBencat = bencat.point.concat(newBaubang);
+      var popupTemplate_polygon = {
+        title: "{Huyện}",
+        content: [
+          {
+            type: "fields",
+            fieldInfos: [
+              { fieldName: "Huyện" },
+              { fieldName: "Diện Tích" },
+              { fieldName: "Dân Số" },
+            ],
+          },
+        ],
+      };
+      var graphicAttPG = {
+        Huyện: "Bến Cát",
+        "Diện Tích": "234,35 km²",
+        "Dân Số": "364.578 người",
+      };
+
+      let jsondata = {
+        points: bencat.schoolsPoints,
+        lines: [
+          // {
+          //     type: "polyline",
+          //     paths: baubang.point
+          //     ,
+          //     symbol: {
+          //         type: "simple-line",
+          //         color: [226, 119, 40], // orange
+          //         width: 2
+          //     },
+          //     Name: "Bến cát",
+          //     Location: "Thành phố Bến Cát",
+          //     popupTemplate: {
+          //         title: "Bến Cát",
+          //         content: "Thành phố Bến Cát"
+          //     }
+          // },
+          {
+            type: "polyline",
+            paths: roads.DT749A,
+            symbol: {
+              type: "simple-line",
+              color: [222, 120, 50],
+              width: 2,
+            },
+            Name: "Đường giao DT749A",
+            popupTemplate: {
+              title: "Đường DT749A",
+              content: "Đường DT749A",
+            },
+          },
+          {
+            type: "polyline",
+            paths: roads.DT742,
+            symbol: {
+              type: "simple-line",
+              color: [222, 120, 50],
+              width: 2,
+            },
+            Name: "Đường DT742",
+            popupTemplate: {
+              title: "DT742",
+              content: "Đường DT742",
+            },
+          },
+          {
+            type: "polyline",
+            paths: roads.DT744,
+            symbol: {
+              type: "simple-line",
+              color: [235, 64, 52],
+              width: 1,
+            },
+            Name: "Đường DT744",
+            popupTemplate: {
+              title: "Đường DT744",
+              content: "Đường DT744",
+            },
+          },
+          {
+            type: "polyline",
+            paths: roads.DT746,
+            symbol: {
+              type: "simple-line",
+              color: [235, 64, 52],
+              width: 1,
+            },
+            Name: "Đường DT746",
+            popupTemplate: {
+              title: "Đường DT746",
+              content: "Đường DT746",
+            },
+          },
+        ],
+        polygons: [
+          {
+            type: "polygon",
+            rings: newBencat,
+            Name: "Bến Cát",
+            attributes: graphicAttPG,
+            // Location: graphicAttBTU,
+            symbol: {
+              type: "simple-fill",
+              color: [227, 139, 79, 0.4],
+              outline: {
+                color: [255, 255, 255],
+                width: 1,
+              },
+            },
+            popupTemplate: popupTemplate_polygon,
+          },
+        ],
+      };
+      require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/Graphic",
+        "esri/layers/GraphicsLayer",
+      ], (Map, MapView, Graphic, GraphicsLayer) => {
+        const map = new Map({
+          basemap: "topo-vector",
+        });
+        map.on("load", function () {
+          map.graphics.enableMouseEvents();
+        });
+
+        const view = new MapView({
+          container: "viewDiv",
+          map: map,
+          zoom: 10,
+          center: [106.592384, 11.110291],
+          highlightOptions: {
+            color: "blue",
+          },
+        });
+        var createGraphic = function (data) {
+          return new Graphic({
+            geometry: data,
+            symbol: data.symbol,
+            attributes: data,
+            popupTemplate: data.popupTemplate,
+          });
+        };
+
+        const createPointGraphic = (point) => {
+          return new Graphic({
+            geometry: point.point,
+            symbol: point.markerSymbol,
+            attributes: point.pointAtt,
+            popupTemplate: {
+              // autocasts as new PopupTemplate()
+              title: "{Name}",
+            },
+          });
+        };
+        var graphicsLayer = new GraphicsLayer();
+        jsondata.points.forEach(function (data) {
+          graphicsLayer.add(createPointGraphic(data));
+        });
+        jsondata.lines.forEach(function (data) {
+          graphicsLayer.add(createGraphic(data));
+        });
+        jsondata.polygons.forEach(function (data) {
+          graphicsLayer.add(createGraphic(data));
+        });
+        map.add(graphicsLayer);
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
