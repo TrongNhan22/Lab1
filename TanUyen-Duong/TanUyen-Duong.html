@@ -1,0 +1,275 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>ArcGIS JavaScript Tutorials: Create a Starter App</title>
+	<style>
+		html,
+		body,
+		#viewDiv {
+			padding: 0;
+			margin: 0;
+			height: 100%;
+			width: 100%;
+		}
+	</style>
+
+	<link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css">
+	<script src="https://js.arcgis.com/4.15/"></script>
+
+	<script>
+		function fetchPolylineData() {
+			fetch('TanUyen-Duong/QL13.txt')
+				.then(response => response.text())
+				.then(text => {
+					const lines = text.trim().split('\n');
+					const paths = lines.map(line => {
+						const [lat, lon] = line.split(', ').map(Number);
+						return [lon, lat];
+					});
+
+					if (jsondata.lines.length > 0) {
+						jsondata.lines[0].paths = paths;
+					}
+				})
+				.catch(error => console.error('Failed to load polyline data:', error));
+		}
+		var point_template_museum = {
+			title: "{Name}",
+			content: "Khu di tích này ở <b>{Location}</b>."
+		};
+		var point_template_school = {
+			title: "{Name}",
+			content: "Trường ở <b>{Location}</b>."
+		};
+		var point_template_tree = {
+			title: "{Name}",
+			content: "Cây này ở <b>{Location}</b>."
+		};
+		var jsondata = {
+			"points": [
+				{
+					type: "point",
+					longitude: 106.722581,
+					latitude: 11.097383,
+					Name: "Khu Di Tích Tưởng Niệm Truyền Thống Chiến Khu Vĩnh Lợi",
+					Location: "3PWF+X32, Vĩnh Tân, Tân Uyên, Bình Dương",
+					symbol: {
+						type: "picture-marker",
+						url: "https://static.arcgis.com/images/Symbols/PeoplePlaces/esriBusinessMarker_59_White.png",
+						width: "40px",
+						height: "40px"
+					},
+					popupTemplate: point_template_museum
+				},
+				{
+					type: "point",
+					longitude: 106.797892,
+					latitude: 11.062278,
+					Name: "TTrường THPT Huỳnh Văn Nghệ",
+					Location: "3Q6X+W39, 747, Uyên Hưng, Tân Uyên, Bình Dương, Vietnam",
+					symbol: {
+						type: "picture-marker",
+						url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+						width: "40px",
+						height: "40px"
+					},
+					popupTemplate: point_template_school
+				},
+				{
+					type: "point",
+					longitude: 106.763675,
+					latitude: 10.982429,
+					Name: "TRƯỜNG THPT THÁI HÒA( MỚI)",
+					Location: "XQJ7+RG2, Thái Hoà, Tân Uyên, Bình Dương, Vietnam",
+					symbol: {
+						type: "picture-marker",
+						url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+						width: "40px",
+						height: "40px"
+					},
+					popupTemplate: point_template_school
+				},
+				{
+					type: "point",
+					longitude: 106.790575,
+					latitude: 11.024648,
+					Name: "Gốc Mai cổ thụ Bạch Đằng Tân Uyên",
+					Location: "Đường Không Tên, Tân Uyên, Bình Dương, Vietnam",
+					symbol: {
+						type: "picture-marker",
+						url: "http://static.arcgis.com/images/Symbols/Basic/GreenShinyPin.png",
+						width: "40px",
+						height: "40px"
+					},
+					popupTemplate: point_template_tree
+				}
+			],
+			"lines": [],
+			"polygons": []
+		};
+		fetchPolylineData();
+		require([
+			"esri/Map",
+			"esri/views/MapView",
+			"esri/Graphic",
+			"esri/layers/GraphicsLayer",
+			"esri/symbols/PictureMarkerSymbol"
+		], function (Map, MapView, Graphic, GraphicsLayer, PictureMarkerSymbol) {
+
+			var map = new Map({
+				basemap: "topo-vector"
+			});
+			map.on("load", function () {
+				map.graphics.enableMouseEvents();
+			});
+
+			var view = new MapView({
+				container: "viewDiv",
+				map: map,
+				center: [106.754458, 11.061395],
+				zoom: 12,
+				highlightOptions: {
+					color: "blue"
+				}
+			});
+
+			var polygonGraphicsLayer = new GraphicsLayer();
+			var pointGraphicsLayer = new GraphicsLayer();
+			var lineGraphicsLayer = new GraphicsLayer();
+
+			var createGraphic = function (data) {
+				return new Graphic({
+					geometry: data,
+					symbol: data.symbol,
+					attributes: data,
+					popupTemplate: data.popupTemplate
+				});
+			};
+			jsondata.polygons.forEach(function (data) {
+				polygonGraphicsLayer.add(createGraphic(data));
+			});
+			jsondata.points.forEach(function (data) {
+				pointGraphicsLayer.add(createGraphic(data));
+			});
+			jsondata.lines.forEach(function (data) {
+				lineGraphicsLayer.add(createGraphic(data));
+			});
+
+			map.add(polygonGraphicsLayer);
+			map.add(lineGraphicsLayer);
+			map.add(pointGraphicsLayer);
+
+			function fetchAndProcessPolylineFiles() {
+				function processPolylineData(text, polylineName, polylineColor, length) {
+					const lines = text.trim().split("\n");
+					const paths = lines.map(line => {
+						const [latitude, longitude] = line.split(", ").map(Number);
+						return [longitude, latitude];
+					});
+					var polyline = {
+						geometry: {
+							type: "polyline",
+							paths: paths
+						},
+						symbol: {
+							type: "simple-line",
+							color: polylineColor,
+							width: 2
+						},
+						attributes: {
+							Name: polylineName,
+							Location: "Bình Dương",
+							Length: length
+						},
+						popupTemplate: {
+							title: "{Name}",
+							content: "Con đường này đi qua tỉnh <b>{Location}</b> với chiều dài <b>{Length} km</b>."
+						}
+					};
+					lineGraphicsLayer.add(new Graphic(polyline));
+				}
+
+				fetch("QL13.txt")
+					.then(response => response.text())
+					.then(text => processPolylineData(text, "QL13", [226, 119, 40], "140,5")) // orange
+					.catch(error => console.error("Failed to fetch QL13.txt:", error));
+
+				fetch("DT750.txt")
+					.then(response => response.text())
+					.then(text => processPolylineData(text, "DT750", [0, 0, 255], "56")) // blue
+					.catch(error => console.error("Failed to fetch DT750.txt:", error));
+
+
+				fetch("DT748.txt")
+					.then(response => response.text())
+					.then(text => processPolylineData(text, "DT748", [255, 0, 0], "37")) // red
+					.catch(error => console.error("Failed to fetch DT748.txt:", error));
+
+
+				fetch("DT749.txt")
+					.then(response => response.text())
+					.then(text => processPolylineData(text, "DT749", [128, 0, 128], "12")) // purple
+					.catch(error => console.error("Failed to fetch DT749.txt:", error));
+			}
+
+			fetchAndProcessPolylineFiles();
+			function fetchAndProcessPolygonFile() {
+
+				function processPolygonData(text, polygonName, polygonColor) {
+					const lines = text.trim().split("\n");
+					const rings = lines.map(line => {
+						const [latitude, longitude] = line.split(", ").map(Number);
+						return [longitude, latitude];
+					});
+
+					var polygon = {
+						geometry: {
+							type: "polygon",
+							rings: rings
+						},
+						symbol: {
+							type: "simple-fill",
+							color: polygonColor,
+							outline: {
+								color: [255, 255, 255],
+								width: 1
+							}
+						},
+						attributes: {
+							Name: polygonName,
+							Location: "Bình Dương"
+						},
+						popupTemplate: {
+							title: "{Name}",
+							content: `<b>Thuộc {Location}</b>
+    <ul>
+        <li>Dân số: 466.053 người</li>
+        <li>Diện tích: 191,76 km²</li> 
+    </ul>`
+						}
+					};
+
+					polygonGraphicsLayer.add(new Graphic(polygon));
+				}
+
+
+				fetch('TanUyen-Polygon.txt')
+					.then(response => response.text())
+					.then(text => processPolygonData(text, "Thành phố Tân Uyên", [0, 100, 255, 0.4]))
+					.catch(error => console.error("Failed to fetch TanUyen-Polygon.txt:", error));
+			}
+
+
+			fetchAndProcessPolygonFile();
+		});
+	</script>
+
+</head>
+
+<body>
+	<div id="viewDiv"></div>
+</body>
+
+</html>
