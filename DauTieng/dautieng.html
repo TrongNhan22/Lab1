@@ -26,7 +26,6 @@
             .then((res) => res.text())
             .then((text) => {
                 var lines = text.split(';');
-                console.log(lines)
                 lines.forEach(function (line) {
                     var values = line.split(',');
 
