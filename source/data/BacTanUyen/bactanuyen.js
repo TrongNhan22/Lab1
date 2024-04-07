@@ -1,13 +1,13 @@
 const imgLT = "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png"
 
 
-graphicAttBTU = {
+export const graphicAttBTU = {
     "Huyện": "Bắc Tân Uyên",
     "Diện Tích": "400 km²",
     "Dân Số": "67.917 người"
 }
 
-const pointListBTU = [
+export const pointListBTU = [
     {
         point: {
             type: "point",
@@ -234,8 +234,7 @@ const pointListBTU = [
     },
 ]
 
-
-ringsBTU = [
+export const ringsBTU = [
     // dongnai
     [106.913799, 11.230271],
     [106.914411, 11.230335],
