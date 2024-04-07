@@ -1,12 +1,12 @@
 const imgLT = "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png"
 
-graphicAttPG = {
+export const graphicAttPG = {
     "Huyện": "Phú Giáo",
     "Diện Tích": "544.4 km²",
     "Dân Số": "95433 người"
 }
 
-const pointListPG = [
+export const pointListPG = [
     {
         point: {
             type: "point",
@@ -150,7 +150,7 @@ const pointListPG = [
 ]
 
 
-ringsPG = [
+export const ringsPG = [
     // bau bang
     [106.659644155189, 11.3560652033078],
     [106.659323989937, 11.3559961674825],
