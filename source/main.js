@@ -3,7 +3,7 @@ var lineCoordinates = [];
 var thuanAn = [];
 var thuanAnLine = [];
 var dauTieng = [];
-
+var bacTanUyen = [];
 
 fetch('./data/DiAn/di-an.txt')
     .then((res) => res.text())
@@ -69,6 +69,20 @@ fetch('./data/DauTieng/data.txt')
     })
     .catch((e) => console.error(e));
 
+//Bắc Tân Uyên
+fetch('./data/BacTanUyen/BacTanUyen.txt')
+    .then((res) => res.text())
+    .then((text) => {
+        var lines = text.split('\n');
+
+        lines.forEach(function (line) {
+            var values = line.split(',');
+
+            bacTanUyen.push([parseFloat(values[1]), parseFloat(values[0])]);
+        });
+    })
+    .catch((e) => console.error(e));
+
 var point_template_commune = {
     title: "{Name}",
     content: `<p>{Location}</p>.`
@@ -98,6 +112,7 @@ var point_template_province = {
 var list_points = [];
 var string_points = "";
 var myCoordinates = [];
+
 var jsondata = {
     //pass data trường vào
     "points": [
@@ -401,6 +416,21 @@ var jsondata = {
             type: "polygon",
             rings: dauTieng,
             Name: "Dầu Tiếng",
+            Location: "Bình Dương, Việt Nam",
+            symbol: {
+                type: "simple-fill",
+                color: [186, 220, 88, 0.4],
+                outline: {
+                    color: [254, 145, 246, 0.27],
+                    width: 2
+                }
+            },
+            popupTemplate: point_template_province
+        },
+        {
+            type: "polygon",
+            rings: bacTanUyen,
+            Name: "Bắc Tân Uyên",
             Location: "Bình Dương, Việt Nam",
             symbol: {
                 type: "simple-fill",
