@@ -98,7 +98,7 @@ var jsondata = {
 					longitude: 106.80147214508797,
 					latitude:  10.877582411470348,
 					Name: "Trường Đại học Quốc Tế - Đại học Quốc gia Thành phố Hồ Chí Minh",
-					Location: "Dĩ An, Bình Dương, Vietnam",
+					Location: "Dầu Tiếng, Bình Dương, Vietnam",
 					symbol: {
 						type: "picture-marker",
 						url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
@@ -112,7 +112,7 @@ var jsondata = {
 					longitude: 106.80557925128646,
 					latitude:  10.88047426752339, 
 					Name: "Trường Đại học Bách Khoa (Cơ sở 2) - Đại học Quốc gia Thành phố Hồ Chí Minh",
-					Location: "Dĩ An, Bình Dương, Vietnam",
+					Location: "Dầu Tiếng, Bình Dương, Vietnam",
 					symbol: {
 						type: "picture-marker",
 						url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
@@ -140,7 +140,7 @@ var jsondata = {
 					longitude: 106.8131358250663, 
 					latitude:  10.892331363036389, 
 					Name: "Trường Cao đẳng Nghề Đồng An",
-					Location: "Dĩ An, Bình Dương, Vietnam",
+					Location: "Dầu Tiếng, Bình Dương, Vietnam",
 					symbol: {
 						type: "picture-marker",
 						url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
@@ -154,7 +154,7 @@ var jsondata = {
 					longitude: 106.76659181020409, 
 					latitude:  10.893721596055249, 
 					Name: "Trường Trung học Cở sở Võ Trường Toản",
-					Location: "Dĩ An, Bình Dương, Vietnam",
+					Location: "Dầu Tiếng, Bình Dương, Vietnam",
 					symbol: {
 						type: "picture-marker",
 						url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
@@ -168,7 +168,7 @@ var jsondata = {
 					longitude: 106.76859414940927, 
 					latitude:  10.911393891797923, 
 					Name: "Trường Trung học Phổ thông Dĩ An",
-					Location: "Dĩ An, Bình Dương, Vietnam",
+					Location: "Dầu Tiếng, Bình Dương, Vietnam",
 					symbol: {
 						type: "picture-marker",
 						url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
@@ -182,7 +182,7 @@ var jsondata = {
 					longitude: 106.76059509762919,
 					latitude:  10.926115741574531, 
 					Name: "Trường Trung học Cơ sở Tân Đông Hiệp",
-					Location: "Dĩ An, Bình Dương, Vietnam",
+					Location: "Dầu Tiếng, Bình Dương, Vietnam",
 					symbol: {
 						type: "picture-marker",
 						url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
@@ -196,7 +196,7 @@ var jsondata = {
 					longitude: 106.80886729629617, 
 					latitude:  10.892605355695226, 
 					Name: "Trường Trung học Cơ sở Bình Thắng",
-					Location: "Dĩ An, Bình Dương, Vietnam",
+					Location: "Dầu Tiếng, Bình Dương, Vietnam",
 					symbol: {
 						type: "picture-marker",
 						url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
