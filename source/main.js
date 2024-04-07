@@ -452,6 +452,178 @@ var jsondata = {
             popupTemplate: point_template_school
         },
         {
+
+
+            type: "point",
+            longitude: 106.412005,
+            latitude: 11.228524,
+            Name: "Trường Tiểu học Thanh Tân",
+            Location: "Dầu Tiếng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+                width: "20px",
+                height: "20px"
+            },
+            popupTemplate: point_template_school
+        }, {
+
+
+            type: "point",
+            longitude: 106.51384790233195,
+            latitude: 11.427301867835798, 
+            Name: "Trường Tiểu học Thanh An",
+            Location: "Dầu Tiếng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+                width: "20px",
+                height: "20px"
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.489086,
+            latitude: 11.315869,
+            Name: "Trường Tiểu học Long Hoà",
+            Location: "Dầu Tiếng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+                width: "20px",
+                height: "20px"
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.362014,
+            latitude: 11.269928,
+            Name: "Trường Tiểu học Ngô Quyền",
+            Location: "Dầu Tiếng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+                width: "20px",
+                height: "20px"
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.39157294549402,
+            latitude: 11.286595874746281,
+            Name: "THCS Nguyễn Bỉnh Khiêm",
+            Location: "Dầu Tiếng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+                width: "20px",
+                height: "20px"
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.47615108841306,
+            latitude: 11.227818345829892,
+            Name: "Trường Trung Học Cơ Sở An Lập",
+            Location: "Dầu Tiếng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+                width: "20px",
+                height: "20px"
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.47955432558398,
+            latitude: 11.325511981849067,
+            Name: "Trường Trung Học Cơ Sở Long Hoà",
+            Location: "Dầu Tiếng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+                width: "20px",
+                height: "20px"
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.4493170810887,
+            latitude: 11.406475810500352,
+            Name: "Trường THCS Minh Tân",
+            Location: "Dầu Tiếng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+                width: "20px",
+                height: "20px"
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.47860846944286,
+            latitude: 11.439919039818063,
+            Name: "Trường THPT Phan Bội Châu",
+            Location: "Dầu Tiếng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+                width: "20px",
+                height: "20px"
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.36722553080689,
+            latitude: 11.281741791697334,
+            Name: "Trường THPT Dầu Tiếng",
+            Location: "Dầu Tiếng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+                width: "20px",
+                height: "20px"
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.44413879796073,
+            latitude: 11.176174310372422,
+            Name: "Trường THPT Thanh Tuyền",
+            Location: "Dầu Tiếng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+                width: "20px",
+                height: "20px"
+            },
+            popupTemplate: point_template_school
+        },
+
+        {
+            type: "point",
+            longitude: 106.47848567003008,
+            latitude: 11.440763666510083,
+            Name: "Trường THCS Minh Hòa",
+            Location: "Dầu Tiếng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
+                width: "20px",
+                height: "20px"
+            },
+            popupTemplate: point_template_school
+        },
+        {
             point: {
                 type: "point",
                 longitude: 106.806082,
