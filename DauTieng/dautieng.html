@@ -22,7 +22,7 @@
         var list_points = [];
         var string_points = "";
         var myCoordinates = [];
-        fetch("side.txt")
+        fetch("data.txt")
             .then((res) => res.text())
             .then((text) => {
                 var lines = text.split('\n');
