@@ -2,6 +2,7 @@ var baubang = [];
 var bencat = [];
 var baubangline = []
 var ThuDau1 = [];
+var TanUyen = [];
 
 var graphicAttBB = {
     "Huyện": "Bàu Bàng",
@@ -9,6 +10,18 @@ var graphicAttBB = {
     "Dân Số": "105.371 người"
 }
 var url_img = 'http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png'
+fetch("./data/TanUyen/TanUyen-Polygon.txt")
+    .then((res) => res.text())
+    .then((text) => {
+        var lines = text.split('\n');
+
+        lines.forEach(function (line) {
+            var values = line.split(',');
+
+            TanUyen.push([parseFloat(values[1]), parseFloat(values[0])]);
+        });
+    })
+    .catch((e) => console.error(e));
 fetch("./data/BauBang/ProvinceCoordinates.txt")
     .then((res) => res.text())
     .then((text) => {
@@ -228,7 +241,11 @@ graphicAttTD1 = {
     "Diện Tích": "118,91 km²",
     "Dân Số": "336.705 người",
 };
-
+graphicAttTU = {
+    "Huyện": "Tân Uyên",
+    "Diện Tích": " 100 km²",
+    "Dân Số": " 100 người",
+};
 var popupTemplate_polygon = {
     title: "{Huyện}",
     content: [
@@ -1115,6 +1132,61 @@ var jsondata = {
             },
             popupTemplate: point_template_school
         },
+        {
+            type: "point",
+            longitude: 106.797892,
+            latitude: 11.062278,
+            Name: "Trường THPT Huỳnh Văn Nghệ",
+            Location: "3Q6X+W39, 747, Uyên Hưng, Tân Uyên, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.797892,
+            latitude: 11.062278,
+            Name: "Trường THPT Huỳnh Văn Nghệ",
+            Location: "3Q6X+W39, 747, Uyên Hưng, Tân Uyên, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.763675,
+            latitude: 10.982429,
+            Name: "TRƯỜNG THPT THÁI HÒA( MỚI)",
+            Location: "XQJ7+RG2, Thái Hoà, Tân Uyên, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        
     ],
     "lines": [
         {
@@ -3429,6 +3501,22 @@ var jsondataBTU = {
             symbol: {
                 type: "simple-fill",
                 color: [227, 139, 79, 0.4],
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: popupTemplate_polygon
+        },
+        {
+            type: "polygon",
+            rings: TanUyen,
+            Name: "Bắc Tân Uyên",
+            attributes: graphicAttTU,
+            Location: "Bình Dương, Việt Nam",
+            symbol: {
+                type: "simple-fill",
+                color: [255,0,0, 0.4],
                 outline: {
                     color: [255, 255, 255],
                     width: 1
