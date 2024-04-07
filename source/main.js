@@ -1183,7 +1183,7 @@ var jsondata = {
             Location: "Bình Dương, Việt Nam",
             symbol: {
                 type: "simple-fill",
-                color: [186, 220, 88, 0.4],
+                color: [7, 114, 245, 0.6],
                 outline: {
                     color: [254, 145, 246, 0.27],
                     width: 2
@@ -1200,7 +1200,7 @@ var jsondata = {
             attributes: graphicAttBB,
             symbol: {
                 type: "simple-fill",
-                color: [186, 220, 88, 0.4],
+                color: [245, 203, 7, 0.6],
                 outline: {
                     color: [255, 255, 255],
                     width: 1
@@ -1217,7 +1217,7 @@ var jsondata = {
             Location: "Bình Dương, Việt Nam",
             symbol: {
                 type: "simple-fill",
-                color: [186, 220, 88, 0.4],
+                color: [246, 25, 7, 0.6],
                 outline: {
                     color: [254, 145, 246, 0.27],
                     width: 2
@@ -3815,7 +3815,7 @@ var jsondataBTU = {
             Location: "Bình Dương, Việt Nam",
             symbol: {
                 type: "simple-fill",
-                color: [227, 139, 79, 0.4],
+                color: [4, 78, 76, 0.6],
                 outline: {
                     color: [255, 255, 255],
                     width: 1
