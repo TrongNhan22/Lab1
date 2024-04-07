@@ -1,6 +1,7 @@
 var provinceCoordinates = [];
-var lineCoordinates = []
-
+var lineCoordinates = [];
+var thuanAn = [];
+var thuanAnLine = []
 fetch("di-an.txt")
     .then((res) => res.text())
     .then((text) => {
@@ -25,30 +26,42 @@ fetch("di-an.txt")
         });
     })
     .catch((e) => console.error(e));
-// fetch("thuan-an.txt")
-//     .then((res) => res.text())
-//     .then((text) => {
-//         var lines = text.split('\n');
+fetch("thuan-an.txt")
+    .then((res) => res.text())
+    .then((text) => {
+        var lines = text.split('\n');
 
-//         lines.forEach(function (line) {
-//             var values = line.split(',');
+        lines.forEach(function (line) {
+            var values = line.split(',');
 
-//             provinceCoordinates.push([parseFloat(values[1]), parseFloat(values[0])]);
-//         });
-//     })
-//     .catch((e) => console.error(e));
-// fetch("thuan-an.txt")
-//     .then((res) => res.text())
-//     .then((text) => {
-//         var lines = text.split('\n');
+            thuanAn.push([parseFloat(values[1]), parseFloat(values[0])]);
+        });
+    })
+    .catch((e) => console.error(e));
+fetch("thuan-an.txt")
+    .then((res) => res.text())
+    .then((text) => {
+        var lines = text.split('\n');
 
-//         lines.forEach(function (line) {
-//             var values = line.split(',');
+        lines.forEach(function (line) {
+            var values = line.split(',');
 
-//             lineCoordinates.push([parseFloat(values[1]), parseFloat(values[0])]);
-//         });
-//     })
-//     .catch((e) => console.error(e));
+            thuanAnLine.push([parseFloat(values[1]), parseFloat(values[0])]);
+        });
+    })
+    .catch((e) => console.error(e));
+
+    function copyTextToClipboard(text) {
+        if (!navigator.clipboard) {
+            fallbackCopyTextToClipboard(text);
+            return;
+        }
+        navigator.clipboard.writeText(text).then(function () {
+            console.log('Async: Copying to clipboard was successful!');
+        }, function (err) {
+            console.error('Async: Could not copy text: ', err);
+        });
+    }
 var point_template_commune = {
     title: "{Name}",
     content: `<p>{Location}</p>.`
@@ -75,6 +88,9 @@ var point_template_province = {
         <li>Diện tích: 60,05 km²</li> 
     </ul>`
 };
+var list_points = [];
+var string_points = "";
+var myCoordinates = [];
 var jsondata = {
     "points": [
         {
@@ -202,6 +218,18 @@ var jsondata = {
             Name: "Tỉnh Bình Dương",
             Location: "Bình Dương, Việt Nam",
             popupTemplate: point_template_area
+        },
+        {
+            type: "polyline",
+            paths: thuanAnLine,
+            symbol: {
+                type: "simple-line",
+                color: [214, 48, 49],
+                width: 4,
+            },
+            Name: "Tỉnh Bình Dương",
+            Location: "Bình Dương, Việt Nam",
+            popupTemplate: point_template_area
         }
     ],
     "polygons": [
@@ -220,7 +248,21 @@ var jsondata = {
             },
             popupTemplate: point_template_province
         },
-
+        {
+            type: "polygon",
+            rings: thuanAn,
+            Name: "Dĩ An",
+            Location: "Bình Dương, Việt Nam",
+            symbol: {
+                type: "simple-fill",
+                color: [186, 220, 88, 0.4],
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_province
+        },
     ]
 };
 
@@ -247,6 +289,18 @@ require([
             color: "blue"
         }
     });
+
+                view.popup.autoOpenEnabled = false; // Disable the default popup behavior
+            view.on("click", function (event) { // Listen for the click event
+                view.hitTest(event).then(function (hitTestResults) { // Search for features where the user clicked
+                    if (hitTestResults.results) {
+                        list_points.push([event.mapPoint.longitude, event.mapPoint.latitude]);
+                        string_points += "[" + event.mapPoint.longitude + ", " + event.mapPoint.latitude + "],"
+                        copyTextToClipboard(string_points);
+                        console.log(list_points);
+                    }
+                })
+            });
     var createGraphic = function (data) {
         return new Graphic({
             geometry: data,
