@@ -1,6 +1,8 @@
 var baubang = [];
 var bencat = [];
 var baubangline = []
+var ThuDau1 = [];
+
 var graphicAttBB = {
     "Huyện": "Bàu Bàng",
     "Diện Tích": "340,02 km²",
@@ -135,6 +137,19 @@ fetch('./data/BacTanUyen/BacTanUyen.txt')
         });
     })
     .catch((e) => console.error(e));
+// Thủ Dầu Một
+fetch("./data/ThuDau1/ThuDau1.txt")
+    .then((res) => res.text())
+    .then((text) => {
+        var lines = text.split('\n');
+
+        lines.forEach(function (line) {
+            var values = line.split(',');
+
+            ThuDau1.push([parseFloat(values[1]), parseFloat(values[0])]);
+        });
+    })
+    .catch((e) => console.error(e));
 
 var point_template_commune = {
     title: "{Name}",
@@ -206,7 +221,13 @@ graphicAttBC = {
     "Huyện": "Bến Cát",
     "Diện Tích": "234,35 km²",
     "Dân Số": "364.578 người",
-  };
+};
+
+graphicAttTD1 = {
+    "Huyện": "Thủ Dầu Một",
+    "Diện Tích": "118,91 km²",
+    "Dân Số": "336.705 người",
+};
 
 var popupTemplate_polygon = {
     title: "{Huyện}",
@@ -1717,6 +1738,132 @@ const pointListBTU = [
         },
         pointAtt: {
             Name: "Trường Trung học cơ sở Nguyễn Trãi",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.6754795952315,
+            latitude: 10.980640545701675,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: imgLT,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Đại học Thủ Dầu Một",
+        }
+    },
+    {
+        point: {
+            type: "point", 
+            longitude: 106.66407031441857,
+            latitude: 10.990438537169801,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: imgLT,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Đại học Bình Dương ",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.66616889523246,
+            latitude: 11.053148976728894,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: imgLT,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Đại học quốc tế Miền Đông",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.67488519101452,
+            latitude: 10.996071891657872,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: imgLT,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Đại học mở Thành phố Hồ Chí Minh",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.64619016746063,
+            latitude: 10.989270596228337,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: imgLT,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Đại học Ngô Quyền",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.67648092370419,
+            latitude: 11.011140391715506,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: imgLT,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường Cao đẳng Việt Nam - Hàn Quốc Bình Dương",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude:106.68361153703452,
+            latitude: 10.971673439792374,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: imgLT,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường Cao đẳng Y tế Bình Dương",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.66470131295297,
+            latitude: 10.960187643383739,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: imgLT,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường Cao đẳng Nghề Kỹ thuật Thiết Bị Y tế Bình Dương",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.66325170085422,
+            latitude: 10.993688879844532,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: imgLT,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường Cao đẳng Nghề Công nghệ Kỹ thuật TP. HCM - Cơ Sở Bình Dương",
         }
     },
 ]
@@ -3304,7 +3451,23 @@ var jsondataBTU = {
                 }
             },
             popupTemplate: popupTemplate_polygon
-        }
+        },
+        {
+            type: "polygon",
+            rings: ThuDau1,
+            Name: "Thủ Dầu Một",
+            attributes: graphicAttTD1,
+            Location: "Bình Dương, Việt Nam",
+            symbol: {
+                type: "simple-fill",
+                color: [139, 0, 139, 0.4],
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: popupTemplate_polygon
+        },
     ]
 };
 
