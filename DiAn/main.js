@@ -25,30 +25,30 @@ fetch("di-an.txt")
         });
     })
     .catch((e) => console.error(e));
-fetch("thuan-an.txt")
-    .then((res) => res.text())
-    .then((text) => {
-        var lines = text.split('\n');
+// fetch("thuan-an.txt")
+//     .then((res) => res.text())
+//     .then((text) => {
+//         var lines = text.split('\n');
 
-        lines.forEach(function (line) {
-            var values = line.split(',');
+//         lines.forEach(function (line) {
+//             var values = line.split(',');
 
-            provinceCoordinates.push([parseFloat(values[1]), parseFloat(values[0])]);
-        });
-    })
-    .catch((e) => console.error(e));
-fetch("thuan-an.txt")
-    .then((res) => res.text())
-    .then((text) => {
-        var lines = text.split('\n');
+//             provinceCoordinates.push([parseFloat(values[1]), parseFloat(values[0])]);
+//         });
+//     })
+//     .catch((e) => console.error(e));
+// fetch("thuan-an.txt")
+//     .then((res) => res.text())
+//     .then((text) => {
+//         var lines = text.split('\n');
 
-        lines.forEach(function (line) {
-            var values = line.split(',');
+//         lines.forEach(function (line) {
+//             var values = line.split(',');
 
-            lineCoordinates.push([parseFloat(values[1]), parseFloat(values[0])]);
-        });
-    })
-    .catch((e) => console.error(e));
+//             lineCoordinates.push([parseFloat(values[1]), parseFloat(values[0])]);
+//         });
+//     })
+//     .catch((e) => console.error(e));
 var point_template_commune = {
     title: "{Name}",
     content: `<p>{Location}</p>.`
