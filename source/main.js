@@ -1,3 +1,61 @@
+var baubang = [];
+var baubangline = []
+var graphicAttBB = {
+    "Huyện": "Bàu Bàng",
+    "Diện Tích": "340,02 km²",
+    "Dân Số": "105.371 người"
+}
+var url_img = 'http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png'
+fetch("./data/BauBang/ProvinceCoordinates.txt")
+    .then((res) => res.text())
+    .then((text) => {
+        var lines = text.split('\n');
+
+        lines.forEach(function (line) {
+            var values = line.split(',');
+
+            baubang.push([parseFloat(values[1]), parseFloat(values[0])]);
+        });
+    })
+    .catch((e) => console.error(e));
+fetch("./data/BauBang/LineCoordinates.txt")
+    .then((res) => res.text())
+    .then((text) => {
+        var lines = text.split('\n');
+
+        lines.forEach(function (line) {
+            var values = line.split(',');
+
+            baubangline.push([parseFloat(values[1]), parseFloat(values[0])]);
+        });
+    })
+    .catch((e) => console.error(e));
+
+// var point_template_province = {
+//     title: "{Name}",
+//     content: `  <b>{Location}</b>
+//     <ul>
+//         <li>Dân số: 105.371 người</li>
+//         <li>Diện tích: 340,02 km²</li> 
+//     </ul>`
+// };
+var point_template_province = {
+    title: "{Huyện}",
+    content: [
+        {
+            type: "fields",
+            fieldInfos: [
+                { fieldName: "Huyện" },
+                { fieldName: "Diện Tích" },
+                { fieldName: "Dân Số" },
+            ],
+        },
+    ],
+};
+var point_template_school = {
+    title: "{Name}",
+    content: `  <p>Địa chỉ: {Location}</p>`
+};
 var provinceCoordinates = [];
 var lineCoordinates = [];
 var thuanAn = [];
@@ -164,8 +222,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -178,8 +236,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -192,8 +250,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -206,8 +264,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -220,8 +278,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -234,8 +292,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -248,8 +306,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -262,8 +320,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -276,8 +334,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -290,8 +348,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -304,8 +362,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -318,8 +376,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -332,8 +390,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -346,8 +404,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -360,8 +418,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -374,8 +432,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -388,8 +446,8 @@ var jsondata = {
             symbol: {
                 type: "picture-marker",
                 url: "http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png",
-                width: "40px",
-                height: "40px"
+                width: "20px",
+                height: "20px"
             },
             popupTemplate: point_template_school
         },
@@ -401,7 +459,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường Tiểu Học Tân Lập",
@@ -415,7 +473,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường tiểu học Tân Định",
@@ -429,7 +487,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường Tiểu Học Tân Thành",
@@ -443,7 +501,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường Trung học Phổ thông Lê Lợi",
@@ -457,7 +515,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường THCS Tân Thành",
@@ -471,7 +529,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường Tiểu Học Đất Cuốc",
@@ -485,7 +543,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Mầm Non HẠNH PHÚC",
@@ -499,7 +557,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường THCS Tân Mỹ",
@@ -513,7 +571,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường tiểu học Thường Tân",
@@ -527,7 +585,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường Mầm non Thường Tân",
@@ -541,7 +599,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường mầm non Hoa Phong Lan",
@@ -555,7 +613,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường tiểu học Huỳnh Thị Chấu",
@@ -569,7 +627,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường Tiểu học Hiếu Liêm",
@@ -583,7 +641,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường Tiểu học Bình Mỹ",
@@ -597,7 +655,7 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường THPT Tân Bình",
@@ -611,11 +669,246 @@ var jsondata = {
             },
             markerSymbol: {
                 type: "picture-marker", url: imgLT,
-                width: "48px", height: "48px",
+                width: "20px", height: "20px",
             },
             pointAtt: {
                 Name: "Trường Tiểu học Tân Bình",
             }
+        },
+        // bau bang
+        {
+            type: "point",
+            longitude: 106.6350296659463,
+            latitude: 11.249030232581973,
+            Name: "Trường THPT Bàu Bàng",
+            Location: "6JXP+J26, TT. Lai Uyên, Bàu Bàng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.64250648089735,
+            latitude: 11.354000351441531,
+            Name: "Trường THCS Trừ Văn Thố",
+            Location: "9J3V+J22, Trừ Văn Thố, Bàu Bàng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.57896895624805,
+            latitude: 11.342047096618824,
+            Name: "Trường THCS Cây Trường II",
+            Location: "Cây Trường 2, Bàu Bàng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.57896895624805,
+            latitude: 11.342047096618824,
+            Name: "Trường THCS Cây Trường II",
+            Location: "Cây Trường 2, Bàu Bàng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.63447706916406,
+            latitude: 11.317418392625495,
+            Name: "Trường Tiểu học Lai Uyên",
+            Location: "8J8M+XR6, Ấp Bàu Hốt, Bàu Bàng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.63550830196404,
+            latitude: 11.274471153087596,
+            Name: "Trường THCS Lai Uyên",
+            Location: "7JFP+Q6J, Ap Bàu Bàng, Bàu Bàng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.63532185625554,
+            latitude: 11.246380550649418,
+            Name: "Trường Tiểu Học Bàu Bàng",
+            Location: "6JWP+H44, TT. Lai Uyên, Bàu Bàng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.62935902567882,
+            latitude: 11.22338464443049,
+            Name: "Trường tiểu học Kim Đồng, Bàu Bàng",
+            Location: "6JFH+9P5, Unnamed, Road, Bàu Bàng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.61818523014792,
+            latitude: 11.196126511608227,
+            Name: "Trường tiểu học Lai Hưng",
+            Location: "Quốc lộ 13, Ấp Lai Khê, X, Lai Hưng, Bàu Bàng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.68247146836654,
+            latitude: 11.233065380185284,
+            Name: "Trường Trung Học Cơ Sở Quang Trung",
+            Location: "6MMJ+6XG, Hưng Hoà, Bàu Bàng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.6917105263474,
+            latitude: 11.228473524709852,
+            Name: "Trường Mầm Non Hồng Nhung",
+            Location: "6MHR+CM5, ĐH612, Hưng Hoà, Bàu Bàng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.69414476675988,
+            latitude: 11.224029539827802,
+            Name: "Trường mầm non Hưng Hòa",
+            Location: "6MFV+HJX, Ấp 5, Thành phố Bến Cát, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
+        },
+        {
+            type: "point",
+            longitude: 106.69812321257254,
+            latitude: 11.222064231221664,
+            Name: "Trường Tiểu Học Hưng Hòa - H.Bàu Bàng",
+            Location: "ĐH612, Hưng Hoà, Bàu Bàng, Bình Dương, Vietnam",
+            symbol: {
+                type: "picture-marker",
+                url: url_img,
+                width: "20px",
+                height: "20px",
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: point_template_school
         },
     ],
     "lines": [
@@ -693,6 +986,23 @@ var jsondata = {
             },
             popupTemplate: popupTemplate_polygon
         },
+        // bau bang
+        {
+            type: "polygon",
+            rings: baubang,
+            Name: "Bàu Bàng",
+            // Location: "Bình Dương, Việt Nam",
+            attributes: graphicAttBB,
+            symbol: {
+                type: "simple-fill",
+                color: [186, 220, 88, 0.4],
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            },
+            popupTemplate: popupTemplate_polygon
+        },
         // {
         //     type: "polygon",
         //     rings: bacTanUyen,
@@ -726,7 +1036,7 @@ const pointListBTU = [
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường Tiểu Học Tân Lập",
@@ -740,7 +1050,7 @@ const pointListBTU = [
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường tiểu học Tân Định",
@@ -754,7 +1064,7 @@ const pointListBTU = [
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường Tiểu Học Tân Thành",
@@ -768,7 +1078,7 @@ const pointListBTU = [
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường Trung học Phổ thông Lê Lợi",
@@ -782,7 +1092,7 @@ const pointListBTU = [
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường THCS Tân Thành",
@@ -796,7 +1106,7 @@ const pointListBTU = [
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường Tiểu Học Đất Cuốc",
@@ -810,7 +1120,7 @@ const pointListBTU = [
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Mầm Non HẠNH PHÚC",
@@ -824,7 +1134,7 @@ const pointListBTU = [
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường THCS Tân Mỹ",
@@ -838,7 +1148,7 @@ const pointListBTU = [
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường tiểu học Thường Tân",
@@ -852,7 +1162,7 @@ const pointListBTU = [
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường Mầm non Thường Tân",
@@ -866,7 +1176,7 @@ const pointListBTU = [
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường mầm non Hoa Phong Lan",
@@ -880,7 +1190,7 @@ const pointListBTU = [
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường tiểu học Huỳnh Thị Chấu",
@@ -894,7 +1204,7 @@ const pointListBTU = [
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường Tiểu học Hiếu Liêm",
@@ -904,11 +1214,11 @@ const pointListBTU = [
         point: {
             type: "point",
             longitude: 106.742863,
-            latitude: 11.143134, 
+            latitude: 11.143134,
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường Tiểu học Bình Mỹ",
@@ -918,11 +1228,11 @@ const pointListBTU = [
         point: {
             type: "point",
             longitude: 106.727902,
-            latitude: 11.183679, 
+            latitude: 11.183679,
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường THPT Tân Bình",
@@ -932,14 +1242,153 @@ const pointListBTU = [
         point: {
             type: "point",
             longitude: 106.698748,
-            latitude: 11.181018, 
+            latitude: 11.181018,
         },
         markerSymbol: {
             type: "picture-marker", url: imgLT,
-            width: "48px", height: "48px",
+            width: "20px", height: "20px",
         },
         pointAtt: {
             Name: "Trường Tiểu học Tân Bình",
+        }
+    }, {
+        point: {
+            type: "point",
+            longitude: 106.599037,
+            latitude: 11.150487,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: url_img,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường THCS Lê Quý Đôn",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.609936,
+            latitude: 11.152775,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: url_img,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường THPT Bến Cát",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.569635,
+            latitude: 11.076631,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: url_img,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường THCS Phú An",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.610235,
+            latitude: 11.138878,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: url_img,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường Tiểu Học Võ Thị Sáu",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.652787,
+            latitude: 11.140007,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: url_img,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường Tiểu Học Chánh Phú Hòa",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.592094,
+            latitude: 11.151433,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: url_img,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường Tiểu Học Trần Quốc Tuấn",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.611557,
+            latitude: 11.146194,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: url_img,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường THCS Mỹ Phước",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.643854,
+            latitude: 11.121152,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: url_img,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường Tiểu Học Trần Văn Ơn",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.630198,
+            latitude: 11.053828,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: url_img,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường Mầm Non Tân Định",
+        }
+    },
+    {
+        point: {
+            type: "point",
+            longitude: 106.594760,
+            latitude: 11.151210,
+        },
+        markerSymbol: {
+            type: "picture-marker", url: url_img,
+            width: "20px", height: "20px",
+        },
+        pointAtt: {
+            Name: "Trường Mầm Non Hướng Dương",
         }
     },
 ]
@@ -984,8 +1433,8 @@ require([
     var view = new MapView({
         container: "viewDiv",
         map: map,
-        center: [106.768658, 10.918769],
-        zoom: 11,
+        center: [106.6783602360426, 11.222416391881385],
+        zoom: 10,
         highlightOptions: {
             color: "blue"
         }
