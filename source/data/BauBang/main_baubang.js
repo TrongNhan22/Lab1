@@ -6,7 +6,7 @@ var graphicAttBB = {
     "Dân Số": "105.371 người"
 }
 var url_img = 'http://static.arcgis.com/images/Symbols/PeoplePlaces/School.png'
-fetch("/BauBang/ProvinceCoordinates.txt")
+fetch("ProvinceCoordinates.txt")
     .then((res) => res.text())
     .then((text) => {
         var lines = text.split('\n');

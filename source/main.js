@@ -4,6 +4,11 @@ var baubangline = []
 var ThuDau1 = [];
 var TanUyen = [];
 
+var dt748 = [];
+var dt749 = [];
+var dt750 = [];
+var ql13 = [];
+
 var graphicAttBB = {
     "Huyện": "Bàu Bàng",
     "Diện Tích": "340,02 km²",
@@ -71,18 +76,9 @@ fetch('./data/DiAn/di-an.txt')
         });
     })
     .catch((e) => console.error(e));
-// fetch('./data/DiAn/di-an.txt')
-//     .then((res) => res.text())
-//     .then((text) => {
-//         var lines = text.split('\n');
 
-//         lines.forEach(function (line) {
-//             var values = line.split(',');
 
-//             lineCoordinates.push([parseFloat(values[1]), parseFloat(values[0])]);
-//         });
-//     })
-//     .catch((e) => console.error(e));
+
 fetch("./data/ThuanAn/thuan-an.txt")
     .then((res) => res.text())
     .then((text) => {
@@ -95,18 +91,6 @@ fetch("./data/ThuanAn/thuan-an.txt")
         });
     })
     .catch((e) => console.error(e));
-// fetch("./data/ThuanAn/thuan-an.txt")
-//     .then((res) => res.text())
-//     .then((text) => {
-//         var lines = text.split('\n');
-
-//         lines.forEach(function (line) {
-//             var values = line.split(',');
-
-//             thuanAnLine.push([parseFloat(values[1]), parseFloat(values[0])]);
-//         });
-//     })
-//     .catch((e) => console.error(e));
 
 // bencat
 fetch("./data/BenCat/bencat.txt")
@@ -160,6 +144,59 @@ fetch("./data/ThuDau1/ThuDau1.txt")
             var values = line.split(',');
 
             ThuDau1.push([parseFloat(values[1]), parseFloat(values[0])]);
+        });
+    })
+    .catch((e) => console.error(e));
+
+// đg
+fetch("./data/TanUyen/DT748.txt")
+    .then((res) => res.text())
+    .then((text) => {
+        var lines = text.split('\n');
+
+        lines.forEach(function (line) {
+            var values = line.split(',');
+
+            dt748.push([parseFloat(values[1]), parseFloat(values[0])]);
+        });
+    })
+    .catch((e) => console.error(e));
+
+fetch("./data/TanUyen/DT749.txt")
+    .then((res) => res.text())
+    .then((text) => {
+        var lines = text.split('\n');
+
+        lines.forEach(function (line) {
+            var values = line.split(',');
+
+            dt749.push([parseFloat(values[1]), parseFloat(values[0])]);
+        });
+    })
+    .catch((e) => console.error(e));
+
+fetch("./data/TanUyen/DT750.txt")
+    .then((res) => res.text())
+    .then((text) => {
+        var lines = text.split('\n');
+
+        lines.forEach(function (line) {
+            var values = line.split(',');
+
+            dt750.push([parseFloat(values[1]), parseFloat(values[0])]);
+        });
+    })
+    .catch((e) => console.error(e));
+
+fetch("./data/TanUyen/QL13.txt")
+    .then((res) => res.text())
+    .then((text) => {
+        var lines = text.split('\n');
+
+        lines.forEach(function (line) {
+            var values = line.split(',');
+
+            ql13.push([parseFloat(values[1]), parseFloat(values[0])]);
         });
     })
     .catch((e) => console.error(e));
@@ -246,6 +283,8 @@ graphicAttTU = {
     "Diện Tích": " 192.4 km²",
     "Dân Số": " 204,488 người",
 };
+
+
 var popupTemplate_polygon = {
     title: "{Huyện}",
     content: [
@@ -1186,33 +1225,7 @@ var jsondata = {
             },
             popupTemplate: point_template_school
         },
-        
-    ],
-    "lines": [
-        {
-            type: "polyline",
-            paths: lineCoordinates,
-            symbol: {
-                type: "simple-line",
-                color: [214, 48, 49],
-                width: 4,
-            },
-            Name: "Tỉnh Bình Dương",
-            Location: "Bình Dương, Việt Nam",
-            popupTemplate: point_template_area
-        },
-        {
-            type: "polyline",
-            paths: thuanAnLine,
-            symbol: {
-                type: "simple-line",
-                color: [214, 48, 49],
-                width: 4,
-            },
-            Name: "Tỉnh Bình Dương",
-            Location: "Bình Dương, Việt Nam",
-            popupTemplate: point_template_area
-        }
+
     ],
     "polygons": [
         {
@@ -1225,7 +1238,7 @@ var jsondata = {
                 type: "simple-fill",
                 color: [186, 220, 88, 0.4],
                 outline: {
-                    color: [254, 145, 246, 0.27],
+                    color: [255, 255, 255, 1],
                     width: 2
                 }
             },
@@ -1241,7 +1254,7 @@ var jsondata = {
                 type: "simple-fill",
                 color: [39, 255, 174, 0.27],
                 outline: {
-                    color: [254, 145, 246, 0.27],
+                    color: [255, 255, 255, 1],
                     width: 2
                 }
             },
@@ -1257,7 +1270,7 @@ var jsondata = {
                 type: "simple-fill",
                 color: [7, 114, 245, 0.6],
                 outline: {
-                    color: [254, 145, 246, 0.27],
+                    color: [255, 255, 255, 1],
                     width: 2
                 }
             },
@@ -1274,8 +1287,8 @@ var jsondata = {
                 type: "simple-fill",
                 color: [245, 203, 7, 0.6],
                 outline: {
-                    color: [255, 255, 255],
-                    width: 1
+                    color: [255, 255, 255, 1],
+                    width: 2
                 }
             },
             popupTemplate: popupTemplate_polygon
@@ -1291,7 +1304,7 @@ var jsondata = {
                 type: "simple-fill",
                 color: [246, 25, 7, 0.6],
                 outline: {
-                    color: [254, 145, 246, 0.27],
+                    color: [255, 255, 255, 1],
                     width: 2
                 }
             },
@@ -3810,7 +3823,7 @@ var jsondataBTU = {
             symbol: {
                 type: "simple-line",
                 color: [222, 120, 50],
-                width: 2,
+                width: 4,
             },
             Name: "Đường giao ĐT749A",
             popupTemplate: {
@@ -3824,7 +3837,7 @@ var jsondataBTU = {
             symbol: {
                 type: "simple-line",
                 color: [222, 120, 50],
-                width: 2,
+                width: 4,
             },
             Name: "Đường ĐT742",
             popupTemplate: {
@@ -3838,7 +3851,7 @@ var jsondataBTU = {
             symbol: {
                 type: "simple-line",
                 color: [235, 64, 52],
-                width: 1,
+                width: 4,
             },
             Name: "Đường ĐT744",
             popupTemplate: {
@@ -3852,12 +3865,68 @@ var jsondataBTU = {
             symbol: {
                 type: "simple-line",
                 color: [235, 64, 52],
-                width: 1,
+                width: 4,
             },
             Name: "Đường ĐT746",
             popupTemplate: {
                 title: "Đường ĐT746",
                 content: "Đường ĐT746",
+            },
+        },
+        {
+            type: "polyline",
+            paths: dt748,
+            symbol: {
+                type: "simple-line",
+                color: [235, 64, 52],
+                width: 4,
+            },
+            Name: "Đường ĐT748",
+            popupTemplate: {
+                title: "Đường ĐT748",
+                content: "Đường ĐT748",
+            },
+        },
+        {
+            type: "polyline",
+            paths: dt749,
+            symbol: {
+                type: "simple-line",
+                color: [235, 64, 52],
+                width: 4,
+            },
+            Name: "Đường ĐT749",
+            popupTemplate: {
+                title: "Đường ĐT749",
+                content: "Đường ĐT749",
+            },
+        },
+        {
+            type: "polyline",
+            paths: dt750,
+            symbol: {
+                type: "simple-line",
+                color: [235, 64, 52],
+                width: 4,
+            },
+            Name: "Đường ĐT750",
+            popupTemplate: {
+                title: "Đường ĐT750",
+                content: "Đường ĐT750",
+            },
+        },
+        {
+            type: "polyline",
+            paths: ql13,
+            symbol: {
+                type: "simple-line",
+                color: [235, 64, 52],
+                width: 4,
+            },
+            Name: "Đường QL13",
+            popupTemplate: {
+                title: "Đường QL13",
+                content: "Đường QL13",
             },
         },
     ],
@@ -3872,8 +3941,8 @@ var jsondataBTU = {
                 type: "simple-fill",
                 color: [227, 139, 79, 0.4],
                 outline: {
-                    color: [255, 255, 255],
-                    width: 1
+                    color: [255, 255, 255, 1],
+                    width: 2
                 }
             },
             popupTemplate: popupTemplate_polygon
@@ -3886,10 +3955,10 @@ var jsondataBTU = {
             Location: "Bình Dương, Việt Nam",
             symbol: {
                 type: "simple-fill",
-                color: [255,0,0, 0.4],
+                color: [255, 0, 0, 0.4],
                 outline: {
-                    color: [255, 255, 255],
-                    width: 1
+                    color: [255, 255, 255, 1],
+                    width: 2
                 }
             },
             popupTemplate: popupTemplate_polygon
@@ -3904,8 +3973,8 @@ var jsondataBTU = {
                 type: "simple-fill",
                 color: [4, 78, 76, 0.6],
                 outline: {
-                    color: [255, 255, 255],
-                    width: 1
+                    color: [255, 255, 255, 1],
+                    width: 2
                 }
             },
             popupTemplate: popupTemplate_polygon
@@ -3920,8 +3989,8 @@ var jsondataBTU = {
                 type: "simple-fill",
                 color: [139, 0, 139, 0.4],
                 outline: {
-                    color: [255, 255, 255],
-                    width: 1
+                    color: [255, 255, 255, 1],
+                    width: 2
                 }
             },
             popupTemplate: popupTemplate_polygon
@@ -3986,9 +4055,6 @@ require([
 
     var graphicsLayer = new GraphicsLayer();
     jsondata.points.forEach(function (data) {
-        graphicsLayer.add(createGraphic(data));
-    });
-    jsondata.lines.forEach(function (data) {
         graphicsLayer.add(createGraphic(data));
     });
     jsondata.polygons.forEach(function (data) {
