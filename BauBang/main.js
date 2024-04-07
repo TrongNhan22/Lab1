@@ -1,6 +1,7 @@
 var provinceCoordinates = [];
 var lineCoordinates = []
 var graphicAttBB = {
+    "Huyện": "Bàu Bàng",
     "Diện Tích": "340,02 km²",
     "Dân Số": "105.371 người"
 }
@@ -42,11 +43,12 @@ var point_template_commune = {
 //     </ul>`
 // };
 var point_template_province = {
-    title: "{Name}",
+    title: "{Huyện}",
     content: [
         {
             type: "fields",
             fieldInfos: [
+                { fieldName: "Huyện" },
                 { fieldName: "Diện Tích" },
                 { fieldName: "Dân Số" },
             ],
