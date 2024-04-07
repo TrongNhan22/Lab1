@@ -25,11 +25,11 @@
         fetch("data.txt")
             .then((res) => res.text())
             .then((text) => {
-                var lines = text.split(';');
+                var lines = text.split('\n');
                 lines.forEach(function (line) {
                     var values = line.split(',');
 
-                    myCoordinates.push([parseFloat(values[0]), parseFloat(values[1])]);
+                    myCoordinates.push([parseFloat(values[1]), parseFloat(values[0])]);
 
                 });
                 myCoordinates.splice(-1)
