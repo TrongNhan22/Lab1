@@ -243,8 +243,8 @@ graphicAttTD1 = {
 };
 graphicAttTU = {
     "Huyện": "Tân Uyên",
-    "Diện Tích": " 100 km²",
-    "Dân Số": " 100 người",
+    "Diện Tích": " 192.4 km²",
+    "Dân Số": " 204,488 người",
 };
 var popupTemplate_polygon = {
     title: "{Huyện}",
@@ -3801,7 +3801,6 @@ const roads = {
         [106.804866, 11.069494],
     ]
 };
-
 var jsondataBTU = {
     "points": pointListBTU,
     "lines": [
