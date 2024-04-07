@@ -1,6 +1,7 @@
 var provinceCoordinates = [];
 var lineCoordinates = []
 var graphicAttBB = {
+    "Huyện": "Bàu Bàng",
     "Diện Tích": "340,02 km²",
     "Dân Số": "105.371 người"
 }
@@ -17,7 +18,7 @@ fetch("/BauBang/ProvinceCoordinates.txt")
         });
     })
     .catch((e) => console.error(e));
-fetch("/BauBang/LineCoordinates.txt")
+fetch("LineCoordinates.txt")
     .then((res) => res.text())
     .then((text) => {
         var lines = text.split('\n');
@@ -33,6 +34,7 @@ var point_template_commune = {
     title: "{Name}",
     content: `<p>{Location}</p>.`
 };
+console.log(provinceCoordinates)
 // var point_template_province = {
 //     title: "{Name}",
 //     content: `  <b>{Location}</b>
@@ -42,11 +44,12 @@ var point_template_commune = {
 //     </ul>`
 // };
 var point_template_province = {
-    title: "{Name}",
+    title: "{Huyện}",
     content: [
         {
             type: "fields",
             fieldInfos: [
+                { fieldName: "Huyện" },
                 { fieldName: "Diện Tích" },
                 { fieldName: "Dân Số" },
             ],
@@ -66,7 +69,7 @@ var point_template_area = {
     </ul>
     `
 };
-var jsondata = {
+var jsondataBB = {
     "points": [
         // {
         //     type: "point",
@@ -450,56 +453,56 @@ var jsondata = {
     ]
 };
 
-require([
-    "esri/Map",
-    "esri/views/MapView",
-    "esri/Graphic",
-    "esri/layers/GraphicsLayer"
-], function (Map, MapView, Graphic, GraphicsLayer) {
+// require([
+//     "esri/Map",
+//     "esri/views/MapView",
+//     "esri/Graphic",
+//     "esri/layers/GraphicsLayer"
+// ], function (Map, MapView, Graphic, GraphicsLayer) {
 
-    var map = new Map({
-        basemap: "topo-vector"
-    });
-    map.on("load", function () {
-        map.graphics.enableMouseEvents();
-    });
+//     var map = new Map({
+//         basemap: "topo-vector"
+//     });
+//     map.on("load", function () {
+//         map.graphics.enableMouseEvents();
+//     });
 
-    var view = new MapView({
-        container: "viewDiv",
-        map: map,
-        center: [106.63466897227721, 11.271098372588598],
-        zoom: 11,
-        highlightOptions: {
-            color: "blue"
-        }
-    });
-    var createGraphic = function (data) {
-        return new Graphic({
-            geometry: data,
-            symbol: data.symbol,
-            attributes: data,
-            popupTemplate: data.popupTemplate
-        });
-    };
-    const createPolygonsGraphic = (data) => {
-        return new Graphic({
-            geometry: data,
-            symbol: data.symbol,
-            attributes: data.attributes,
-            popupTemplate: data.popupTemplate
-        });
-    };
-    var graphicsLayer = new GraphicsLayer();
-    jsondata.points.forEach(function (data) {
-        graphicsLayer.add(createGraphic(data));
-    });
-    jsondata.lines.forEach(function (data) {
-        graphicsLayer.add(createGraphic(data));
-    });
-    jsondata.polygons.forEach(function (data) {
-        graphicsLayer.add(createPolygonsGraphic(data));
-    });
-    map.add(graphicsLayer);
+//     var view = new MapView({
+//         container: "viewDiv",
+//         map: map,
+//         center: [106.63466897227721, 11.271098372588598],
+//         zoom: 11,
+//         highlightOptions: {
+//             color: "blue"
+//         }
+//     });
+//     var createGraphic = function (data) {
+//         return new Graphic({
+//             geometry: data,
+//             symbol: data.symbol,
+//             attributes: data,
+//             popupTemplate: data.popupTemplate
+//         });
+//     };
+//     const createPolygonsGraphic = (data) => {
+//         return new Graphic({
+//             geometry: data,
+//             symbol: data.symbol,
+//             attributes: data.attributes,
+//             popupTemplate: data.popupTemplate
+//         });
+//     };
+//     var graphicsLayer = new GraphicsLayer();
+//     jsondata.points.forEach(function (data) {
+//         graphicsLayer.add(createGraphic(data));
+//     });
+//     jsondata.lines.forEach(function (data) {
+//         graphicsLayer.add(createGraphic(data));
+//     });
+//     jsondata.polygons.forEach(function (data) {
+//         graphicsLayer.add(createPolygonsGraphic(data));
+//     });
+//     map.add(graphicsLayer);
 
 
-});
+// });
